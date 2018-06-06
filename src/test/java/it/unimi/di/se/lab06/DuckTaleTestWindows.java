@@ -62,7 +62,7 @@ public class DuckTaleTestWindows {
 
     @Test
     public void testQuackableGoose() {
-        Quackable quackableGoose = new CounterDuckFactory().createQuackableGoose();
+        Quackable quackableGoose = new SimpleDuckFactory().createQuackableGoose();
 
         quackableGoose.quack();
 
@@ -105,5 +105,19 @@ public class DuckTaleTestWindows {
         countableMallardDuck.quack();
 
         assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testFlock() {
+        Flock flock = new Flock();
+        SimpleDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+
+
+        flock.add(simpleDuckFactory.createMallardDuck());
+        flock.add(simpleDuckFactory.createRedHeadDuck());
+
+        flock.quack();
+
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("quack\nquack\n");
     }
 }
