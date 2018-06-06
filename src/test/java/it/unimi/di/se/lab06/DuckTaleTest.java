@@ -52,4 +52,13 @@ public class DuckTaleTest {
 
         assertThat(output.getLog()).isEqualTo("squeak\n");
     }
+
+    @Test
+    public void testQuackableGoose() {
+        Quackable quackableGoose = new Quackablegoose();
+
+        quackableGoose.quack();
+
+        assertThat(output.getLog()).isEqualTo("honk\n");
+    }
 }
