@@ -1,5 +1,6 @@
 package it.unimi.di.se.lab06;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -14,6 +15,12 @@ public class DuckTaleTestWindows {
 
     @Rule
     public Timeout globalTimeout = Timeout.seconds(2);
+
+    @Before
+    public void resetCounter() {
+        QuackCounter.reset();
+    }
+
 
     @Test
     public void mallardAndRedHeadDucksQuackQuack() {
@@ -72,7 +79,7 @@ public class DuckTaleTestWindows {
 
         assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
 
-        quackCounter.reset();
+        QuackCounter.reset();
 
         quackCounter.quack();
         assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
@@ -80,11 +87,23 @@ public class DuckTaleTestWindows {
 
     @Test
     public void testSimpleDuckFactory() {
-        SimpleDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
         Quackable mallardDuck = simpleDuckFactory.createMallardDuck();
 
         mallardDuck.quack();
 
         assertThat(output.getLog()).isEqualToNormalizingNewlines("quack\n");
+    }
+
+    @Test
+    public void testCounterDuckFactory() {
+        AbstractDuckFactory counterDuckFactory = new CounterDuckFactory();
+        Quackable countableMallardDuck = counterDuckFactory.createMallardDuck();
+
+        countableMallardDuck.quack();
+        countableMallardDuck.quack();
+        countableMallardDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
     }
 }

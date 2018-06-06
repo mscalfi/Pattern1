@@ -14,7 +14,7 @@ public class QuackCounter implements Quackable {
         return quackCount;
     }
 
-    public void reset() {
+    public static void reset() {
         quackCount = 0;
     }
 
