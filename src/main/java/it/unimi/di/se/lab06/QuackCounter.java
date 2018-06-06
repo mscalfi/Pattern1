@@ -20,6 +20,7 @@ public class QuackCounter implements Quackable {
 
     @Override
     public void quack() {
-
+        daDecorare.quack();
+        quackCount++;
     }
 }
