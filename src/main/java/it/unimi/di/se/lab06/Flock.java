@@ -16,5 +16,6 @@ public class Flock implements Quackable {
     }
 
     public void add(Quackable quacker) {
+        quackables.add(quacker);
     }
 }
