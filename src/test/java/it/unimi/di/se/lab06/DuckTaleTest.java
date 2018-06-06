@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class DuckTaleTest {
 
     @Rule
-    public final SystemOutRule output = new SystemOutRule().enableLog();
+    public final SystemOutRule output = new SystemOutRule().enableLog().muteForSuccessfulTests();
 
     @Rule
     public Timeout globalTimeout = Timeout.seconds(2);
