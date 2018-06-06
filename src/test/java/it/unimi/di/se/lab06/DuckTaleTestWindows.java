@@ -78,5 +78,13 @@ public class DuckTaleTestWindows {
         assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
     }
 
+    @Test
+    public void testSimpleDuckFactory() {
+        SimpleDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        Quackable mallardDuck = simpleDuckFactory.createMallardDuck();
 
+        mallardDuck.quack();
+
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("quack\n");
+    }
 }
