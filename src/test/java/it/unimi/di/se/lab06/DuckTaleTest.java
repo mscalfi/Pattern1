@@ -61,4 +61,21 @@ public class DuckTaleTest {
 
         assertThat(output.getLog()).isEqualTo("honk\n");
     }
+
+    @Test
+    public void testQuackCounter() {
+        QuackCounter quackCounter = new QuackCounter(new QuackableGoose());
+
+        quackCounter.quack();
+        quackCounter.quack();
+        quackCounter.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        quackCounter.reset();
+
+        quackCounter.quack();
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
+
+    }
 }
