@@ -55,7 +55,7 @@ public class DuckTaleTest {
 
     @Test
     public void testQuackableGoose() {
-        Quackable quackableGoose = new Quackablegoose();
+        Quackable quackableGoose = new QuackableGoose();
 
         quackableGoose.quack();
 
