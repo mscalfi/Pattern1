@@ -19,9 +19,28 @@ public class DuckTaleTest {
     public void mallardAndRedHeadDucksQuackQuack() {
         Quackable duck = new MallardDuck();
         Quackable reddy = new RedHeadDuck();
+
         duck.quack();
         reddy.quack();
+
         assertThat(output.getLog()).isEqualTo("quack\nquack\n");
     }
 
+    @Test
+    public void testRubberDuck() {
+        RubberDuck rubberDuck = new RubberDuck();
+
+        rubberDuck.squeak();
+
+        assertThat(output.getLog()).isEqualTo("squeak\n");
+    }
+
+    @Test
+    public void testGoose() {
+        Goose goose = new Goose();
+
+        goose.honk();
+
+        assertThat(output.getLog()).isEqualTo("honk\n");
+    }
 }
