@@ -43,4 +43,22 @@ public class DuckTaleTest {
 
         assertThat(output.getLog()).isEqualTo("honk\n");
     }
+
+    @Test
+    public void testQuackableRubberDuck() {
+        Quackable quackableRubberDuck = new QuackableRubberDuck();
+
+        quackableRubberDuck.quack();
+
+        assertThat(output.getLog()).isEqualTo("squeak\n");
+    }
+
+    @Test
+    public void testQuackableGoose() {
+        Quackable quackableGoose = new QuackableGoose();
+
+        quackableGoose.quack();
+
+        assertThat(output.getLog()).isEqualTo("honk\n");
+    }
 }
