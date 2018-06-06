@@ -79,9 +79,10 @@ public class DuckTaleTestWindows {
 
         assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
 
-        QuackCounter.reset();
+        resetCounter();
 
         quackCounter.quack();
+
         assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
     }
 
@@ -99,10 +100,38 @@ public class DuckTaleTestWindows {
     public void testCounterDuckFactory() {
         AbstractDuckFactory counterDuckFactory = new CounterDuckFactory();
         Quackable countableMallardDuck = counterDuckFactory.createMallardDuck();
+        Quackable countableRedHeaDuck = counterDuckFactory.createRedHeadDuck();
+        Quackable countableQuackableRubberDuck = counterDuckFactory.createQuackableRubberDuck();
+        Quackable countableQuackableGoose = counterDuckFactory.createQuackableGoose();
+
 
         countableMallardDuck.quack();
         countableMallardDuck.quack();
         countableMallardDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        resetCounter();
+
+        countableRedHeaDuck.quack();
+        countableRedHeaDuck.quack();
+        countableRedHeaDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        resetCounter();
+
+        countableQuackableRubberDuck.quack();
+        countableQuackableRubberDuck.quack();
+        countableQuackableRubberDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        resetCounter();
+
+        countableQuackableGoose.quack();
+        countableQuackableGoose.quack();
+        countableQuackableGoose.quack();
 
         assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
     }
@@ -111,7 +140,6 @@ public class DuckTaleTestWindows {
     public void testFlock() {
         Flock flock = new Flock();
         SimpleDuckFactory simpleDuckFactory = new SimpleDuckFactory();
-
 
         flock.add(simpleDuckFactory.createMallardDuck());
         flock.add(simpleDuckFactory.createRedHeadDuck());
