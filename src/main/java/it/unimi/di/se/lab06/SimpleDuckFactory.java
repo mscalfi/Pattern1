@@ -3,21 +3,21 @@ package it.unimi.di.se.lab06;
 public class SimpleDuckFactory extends AbstractDuckFactory {
     @Override
     public Quackable createMallardDuck() {
-        return null;
+        return new MallardDuck();
     }
 
     @Override
     public Quackable createRedHeadDuck() {
-        return null;
+        return new RedHeadDuck();
     }
 
     @Override
     public Quackable createQuackableRubberDuck() {
-        return null;
+        return new QuackableRubberDuck();
     }
 
     @Override
     public Quackable createQuackableGoose() {
-        return null;
+        return new QuackableGoose();
     }
 }
