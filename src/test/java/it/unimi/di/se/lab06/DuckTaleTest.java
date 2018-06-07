@@ -1,5 +1,6 @@
 package it.unimi.di.se.lab06;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
@@ -15,10 +16,15 @@ public class DuckTaleTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(2);
 
+    @Before
+    public void resetCounter() {
+        QuackCounter.reset();
+    }
+
     @Test
     public void mallardAndRedHeadDucksQuackQuack() {
-        Quackable duck = new MallardDuck();
-        Quackable reddy = new RedHeadDuck();
+        Quackable duck = new SimpleDuckFactory().createMallardDuck();
+        Quackable reddy = new SimpleDuckFactory().createRedHeadDuck();
 
         duck.quack();
         reddy.quack();
@@ -46,7 +52,7 @@ public class DuckTaleTest {
 
     @Test
     public void testQuackableRubberDuck() {
-        Quackable quackableRubberDuck = new QuackableRubberDuck();
+        Quackable quackableRubberDuck = new SimpleDuckFactory().createQuackableRubberDuck();
 
         quackableRubberDuck.quack();
 
@@ -55,7 +61,7 @@ public class DuckTaleTest {
 
     @Test
     public void testQuackableGoose() {
-        Quackable quackableGoose = new QuackableGoose();
+        Quackable quackableGoose = new SimpleDuckFactory().createQuackableGoose();
 
         quackableGoose.quack();
 
@@ -72,10 +78,75 @@ public class DuckTaleTest {
 
         assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
 
-        quackCounter.reset();
+        resetCounter();
 
         quackCounter.quack();
         assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
 
     }
+
+    @Test
+    public void testSimpleDuckFactory() {
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        Quackable mallardDuck = simpleDuckFactory.createMallardDuck();
+
+        mallardDuck.quack();
+
+        assertThat(output.getLog()).isEqualTo("quack\n");
+    }
+
+    @Test
+    public void testCounterDuckFactory() {
+        AbstractDuckFactory counterDuckFactory = new CounterDuckFactory();
+        Quackable countableMallardDuck = counterDuckFactory.createMallardDuck();
+        Quackable countableRedHeaDuck = counterDuckFactory.createRedHeadDuck();
+        Quackable countableQuackableRubberDuck = counterDuckFactory.createQuackableRubberDuck();
+        Quackable countableQuackableGoose = counterDuckFactory.createQuackableGoose();
+
+
+        countableMallardDuck.quack();
+        countableMallardDuck.quack();
+        countableMallardDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        resetCounter();
+
+        countableRedHeaDuck.quack();
+        countableRedHeaDuck.quack();
+        countableRedHeaDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        resetCounter();
+
+        countableQuackableRubberDuck.quack();
+        countableQuackableRubberDuck.quack();
+        countableQuackableRubberDuck.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+
+        resetCounter();
+
+        countableQuackableGoose.quack();
+        countableQuackableGoose.quack();
+        countableQuackableGoose.quack();
+
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(3);
+    }
+
+    @Test
+    public void testFlock() {
+        Flock flock = new Flock();
+        SimpleDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+
+        flock.add(simpleDuckFactory.createMallardDuck());
+        flock.add(simpleDuckFactory.createRedHeadDuck());
+
+        flock.quack();
+
+        assertThat(output.getLog()).isEqualTo("quack\nquack\n");
+    }
+
+
 }
