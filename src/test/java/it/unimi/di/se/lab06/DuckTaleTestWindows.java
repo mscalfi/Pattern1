@@ -3,12 +3,12 @@ package it.unimi.di.se.lab06;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.rules.Timeout;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class DuckTaleTest {
+public class DuckTaleTestWindows {
 
     @Rule
     public final SystemOutRule output = new SystemOutRule().enableLog().muteForSuccessfulTests();
@@ -21,6 +21,7 @@ public class DuckTaleTest {
         QuackCounter.reset();
     }
 
+
     @Test
     public void mallardAndRedHeadDucksQuackQuack() {
         Quackable duck = new SimpleDuckFactory().createMallardDuck();
@@ -29,7 +30,7 @@ public class DuckTaleTest {
         duck.quack();
         reddy.quack();
 
-        assertThat(output.getLog()).isEqualTo("quack\nquack\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("quack\nquack\n");
     }
 
     @Test
@@ -38,7 +39,7 @@ public class DuckTaleTest {
 
         rubberDuck.squeak();
 
-        assertThat(output.getLog()).isEqualTo("squeak\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("squeak\n");
     }
 
     @Test
@@ -47,7 +48,7 @@ public class DuckTaleTest {
 
         goose.honk();
 
-        assertThat(output.getLog()).isEqualTo("honk\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("honk\n");
     }
 
     @Test
@@ -56,7 +57,7 @@ public class DuckTaleTest {
 
         quackableRubberDuck.quack();
 
-        assertThat(output.getLog()).isEqualTo("squeak\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("squeak\n");
     }
 
     @Test
@@ -65,7 +66,7 @@ public class DuckTaleTest {
 
         quackableGoose.quack();
 
-        assertThat(output.getLog()).isEqualTo("honk\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("honk\n");
     }
 
     @Test
@@ -81,8 +82,8 @@ public class DuckTaleTest {
         resetCounter();
 
         quackCounter.quack();
-        assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
 
+        assertThat(QuackCounter.getQuackCount()).isEqualTo(1);
     }
 
     @Test
@@ -92,7 +93,7 @@ public class DuckTaleTest {
 
         mallardDuck.quack();
 
-        assertThat(output.getLog()).isEqualTo("quack\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("quack\n");
     }
 
     @Test
@@ -145,8 +146,6 @@ public class DuckTaleTest {
 
         flock.quack();
 
-        assertThat(output.getLog()).isEqualTo("quack\nquack\n");
+        assertThat(output.getLog()).isEqualToNormalizingNewlines("quack\nquack\n");
     }
-
-
 }
