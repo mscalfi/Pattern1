@@ -24,8 +24,9 @@ public class DuckTaleTestWindows {
 
     @Test
     public void mallardAndRedHeadDucksQuackQuack() {
-        Quackable duck = new SimpleDuckFactory().createMallardDuck();
-        Quackable reddy = new SimpleDuckFactory().createRedHeadDuck();
+        AbstractDuckFactory factory = new SimpleDuckFactory();
+        Quackable duck = factory.createMallardDuck();
+        Quackable reddy = factory.createRedHeadDuck();
 
         duck.quack();
         reddy.quack();
@@ -139,7 +140,7 @@ public class DuckTaleTestWindows {
     @Test
     public void testFlock() {
         Flock flock = new Flock();
-        SimpleDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
 
         flock.add(simpleDuckFactory.createMallardDuck());
         flock.add(simpleDuckFactory.createRedHeadDuck());
