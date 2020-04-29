@@ -5,21 +5,18 @@ che consentano di simulare un insieme di *anatre*, seguendo passo passo le speci
 
 #### Step 1
 Implementare due diverse classi che rappresentano due diverse specie di anatre: `MallardDuck` e `RedHeadDuck`. Entrambe le classi implementano l'interfaccia [Quackable](src/main/java/it/uniupo/disit/sweng/lab06/Quackable.java) e rispondono alla chiamata del metodo
-```
-#!java
+```java
 public void quack()
 ```
 scrivendo su [System.out](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#out) la stringa `"quack"`.
 
 #### Step 2
 Implementare altre due classi `RubberDuck` e `Goose`. Esse, pur NON implementando l'interfaccia `Quackable` hanno un comportamento molto simile: `RubberDuck` possiede un metodo
-```
-#!java
+```java
 public void squeak()
 ```
 la cui invocazione scrive su *System.out* la stringa `"squeak"`; `Goose` invece possiede un metodo
-```
-#!java
+```java
 public void honk()
 ```
 la cui invocazione scrive su *System.out* la stringa `"honk"`.
@@ -34,13 +31,11 @@ Le funzionalità fino ad ora sviluppate rappresentano la prima release del softw
 Aggiungere la possibilità di **contare** il numero di volte che un qualsiasi oggetto di tipo `Quackable` emetta un *verso*. Tale obiettivo deve essere raggiunto usando il *design pattern* denominato
 **decorator**; più in dettaglio, è richiesta la realizzazione di una classe `QuackCounter` che implementa l'interfaccia `Quackable` e *decori* un'istanza di `Quackable` in modo che venga conteggiato il numero di *versi* emessi da una qualsiasi istanza decorata.
 La classe `QuackCounter` deve implementare anche i metodi:
-```
-#!java
+```java
 public static int getQuackNumber()
 ```
 che restituisce il conteggio attuale;
-```
-#!java
+```java
 public static void reset()
 ```
 che resetta il conteggio attuale.
@@ -50,8 +45,7 @@ Le funzionalità fino ad ora sviluppate rappresentano la seconda release del sof
 
 #### Step 5
 Creare due diverse classi `SimpleDuckFactory` e `CounterDuckFactory` adibite rispettivamente alla **creazione** di semplici oggetti `Quackable` e oggetti `Quackable` incapsulati nel *decorator* introdotto al punto precedente. Tale obiettivo deve essere raggiunto usando il *design pattern* denominato **abstract factory**. Nello specifico le due factory concrete devono estendere la seguente classe astratta:
-```
-#!java
+```java
 public abstract class AbstractDuckFactory {
   abstract public Quackable createMallardDuck();
   abstract public Quackable createRedHeadDuck();
@@ -67,8 +61,7 @@ Le funzionalità fino ad ora sviluppate rappresentano la terza release del softw
 #### Step 6
 Creare una classe che rappresenti uno stormo di oggetti di tipo `Quackable`. Tale obiettivo deve essere raggiunto usando il *design pattern* denominato **composite**; più in dettaglio, è richiesta la realizzazione di una classe `Flock` che deve implementare l'interfaccia `Quackable` e deve rispondere all'invocazione del metodo `void quack()` demandando la chiamata agli oggetti `Quackable` *aggregati*.
 Le istanze della classe `Flock` devono consentire l'aggiunta di elementi "figli" tramite l'invocazione del metodo:
-```
-#!java
+```java
 public void add(Quackable duck)
 ```
 
