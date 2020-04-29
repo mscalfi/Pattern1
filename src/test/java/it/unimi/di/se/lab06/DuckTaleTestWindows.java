@@ -54,7 +54,8 @@ public class DuckTaleTestWindows {
 
     @Test
     public void testQuackableRubberDuck() {
-        Quackable quackableRubberDuck = new SimpleDuckFactory().createQuackableRubberDuck();
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        Quackable quackableRubberDuck = simpleDuckFactory.createQuackableRubberDuck();
 
         quackableRubberDuck.quack();
 
@@ -63,7 +64,8 @@ public class DuckTaleTestWindows {
 
     @Test
     public void testQuackableGoose() {
-        Quackable quackableGoose = new SimpleDuckFactory().createQuackableGoose();
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        Quackable quackableGoose = simpleDuckFactory.createQuackableGoose();
 
         quackableGoose.quack();
 

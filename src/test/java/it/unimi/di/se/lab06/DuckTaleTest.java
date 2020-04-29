@@ -3,8 +3,8 @@ package it.unimi.di.se.lab06;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.Timeout;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.rules.Timeout;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -53,7 +53,8 @@ public class DuckTaleTest {
 
     @Test
     public void testQuackableRubberDuck() {
-        Quackable quackableRubberDuck = new SimpleDuckFactory().createQuackableRubberDuck();
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        Quackable quackableRubberDuck = simpleDuckFactory.createQuackableRubberDuck();
 
         quackableRubberDuck.quack();
 
@@ -62,7 +63,8 @@ public class DuckTaleTest {
 
     @Test
     public void testQuackableGoose() {
-        Quackable quackableGoose = new SimpleDuckFactory().createQuackableGoose();
+        AbstractDuckFactory simpleDuckFactory = new SimpleDuckFactory();
+        Quackable quackableGoose = simpleDuckFactory.createQuackableGoose();
 
         quackableGoose.quack();
 
